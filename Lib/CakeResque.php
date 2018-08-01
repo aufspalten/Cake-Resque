@@ -147,15 +147,6 @@ class CakeResque {
 			$caller = debug_backtrace();
 		}
 
-		self::$logs[$queue][] = array(
-			'queue' => $queue,
-			'class' => $class,
-			'method' => array_shift($args),
-			'args' => $args,
-			'jobId' => $r,
-			'caller' => $caller
-		);
-
 		return $r;
 	}
 
