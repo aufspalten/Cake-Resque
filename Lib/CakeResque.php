@@ -28,15 +28,6 @@ App::uses('Folder', 'Utility');
 class CakeResque {
 
 /**
- * Array containing all the queuing activity.
- *
- * Actually needed for testing purposes and DebugKitEx plugin.
- *
- * @var array
- */
-	public static $logs = array();
-
-/**
  * Resque classname.
  *
  * Actually needed for testing purposes.
@@ -184,16 +175,6 @@ class CakeResque {
 			$caller = debug_backtrace();
 		}
 
-		self::$logs[$queue][] = array(
-			'queue' => $queue,
-			'class' => $class,
-			'method' => array_shift($args),
-			'args' => $args,
-			'jobId' => $r,
-			'caller' => $caller,
-			'time' => $at instanceof DateTime ? $at->getTimestamp() : $at
-		);
-
 		return $r;
 	}
 
@@ -230,16 +211,6 @@ class CakeResque {
 		} else {
 			$caller = debug_backtrace();
 		}
-
-		self::$logs[$queue][] = array(
-			'queue' => $queue,
-			'class' => $class,
-			'method' => array_shift($args),
-			'args' => $args,
-			'jobId' => $r,
-			'caller' => $caller,
-			'time' => time() + $in
-		);
 
 		return $r;
 	}
